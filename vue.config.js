@@ -1,10 +1,10 @@
 /*
  * @Author: xiongfang
  * @Date: 2021-12-07 18:07:01
- * @LastEditTime: 2021-12-07 18:12:55
+ * @LastEditTime: 2021-12-08 17:26:35
  * @LastEditors: xiongfang
  * @Description:
- * @FilePath: \client\vue.config.js
+ * @FilePath: \mobile-vue2-vant\vue.config.js
  */
 
 const path = require('path')
@@ -27,5 +27,11 @@ module.exports = {
       .options({
         symbolId: 'icon-[name]'
       })
+  },
+  pluginOptions: {
+    'style-resources-loader': {
+      preProcessor: 'less',
+      patterns: [path.resolve(__dirname, './src/style/variables.less')]
+    }
   }
 }

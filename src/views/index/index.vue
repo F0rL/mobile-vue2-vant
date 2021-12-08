@@ -32,7 +32,7 @@ export default {
   .x-flex {
     flex-direction: column;
     .x-svg-icon {
-      color: #342662;
+      color: @base-color-default;
       font-size: 40px;
       margin-bottom: 20px;
     }
