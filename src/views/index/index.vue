@@ -20,7 +20,7 @@ export default {
     }
   },
   mounted() {
-    this.$u.api.getUser().then(res => {
+    this.$api.getUser().then(res => {
       this.userInfo = res.data
     })
   }

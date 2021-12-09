@@ -1,10 +1,10 @@
 /*
  * @Author: xiongfang
  * @Date: 2021-12-01 15:49:28
- * @LastEditTime: 2021-12-08 14:13:49
+ * @LastEditTime: 2021-12-08 17:46:50
  * @LastEditors: xiongfang
  * @Description: 引入所有插件
- * @FilePath: \client\src\plugins\index.js
+ * @FilePath: \mobile-vue2-vant\src\plugins\index.js
  */
 import Vue from 'vue'
 import './modules/vantCom'

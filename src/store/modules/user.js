@@ -1,7 +1,7 @@
 /*
  * @Author: xiongfang
  * @Date: 2021-12-08 16:51:37
- * @LastEditTime: 2021-12-08 17:00:56
+ * @LastEditTime: 2021-12-08 17:40:44
  * @LastEditors: xiongfang
  * @Description: 登录、获取用户信息、退出登录、清除accessToken逻辑
  * @FilePath: \mobile-vue2-vant\src\store\modules\user.js
@@ -17,7 +17,11 @@ const getters = {}
 
 const mutations = {}
 
-const actions = {}
+const actions = {
+  async login({ commit }) {
+    console.log('login')
+  }
+}
 
 export default {
   state,
