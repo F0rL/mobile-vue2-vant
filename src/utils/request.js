@@ -1,36 +1,34 @@
 /*
  * @Author: xiongfang
  * @Date: 2021-12-08 11:50:54
- * @LastEditTime: 2021-12-08 15:04:12
+ * @LastEditTime: 2021-12-09 15:43:23
  * @LastEditors: xiongfang
  * @Description: axios封装
- * @FilePath: \client\src\utils\request.js
+ * @FilePath: \mobile-vue2-vant\src\utils\request.js
  */
 
 import axios from 'axios'
-import config from '@/config/index'
+import { baseURL, tokenName } from '@/config/index'
+import store from '@/store'
 // import { getToken } from './storageApi'
-// import store from '@/store/index'
 // import { Toast } from 'vant'
 
 const request = axios.create({
-  baseURL: config.baseURL,
+  baseURL,
   withCredentials: true, // send cookies when cross-domain requests
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',
-    Accept: 'application/json',
-    sessionId: ''
+    Accept: 'application/json'
   }
 })
 
 // request interceptor
 request.interceptors.request.use(
   config => {
-    // const token = getToken()
-    // if (token) {
-    //   config.headers['sessionId'] = token
-    // }
+    if (store.getters['user/accessToken']) {
+      config.headers[tokenName] = store.getters['user/accessToken']
+    }
     return config
   },
   error => {
@@ -45,7 +43,7 @@ request.interceptors.response.use(
     const res = response.data
     const errorCode = Number(res.errorCode)
     if (errorCode === 0) {
-      return res
+      return res.data
     } else {
       return Promise.reject(res)
     }

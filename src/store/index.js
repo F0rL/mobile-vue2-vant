@@ -1,7 +1,7 @@
 /*
  * @Author: xiongfang
  * @Date: 2021-12-08 11:36:45
- * @LastEditTime: 2021-12-08 17:38:21
+ * @LastEditTime: 2021-12-09 15:10:07
  * @LastEditors: xiongfang
  * @Description: 导入所有 vuex 模块
  * @FilePath: \mobile-vue2-vant\src\store\index.js
@@ -22,7 +22,6 @@ files.keys().forEach(key => {
 Object.keys(modules).forEach(key => {
   modules[key]['namespaced'] = true
 })
-
 export default new Vuex.Store({
   modules
 })

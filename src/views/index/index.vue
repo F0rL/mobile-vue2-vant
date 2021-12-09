@@ -20,8 +20,8 @@ export default {
     }
   },
   mounted() {
-    this.$api.getUser().then(res => {
-      this.userInfo = res.data
+    this.$store.dispatch('user/login').then(() => {
+      console.log(11)
     })
   }
 }
