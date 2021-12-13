@@ -1,7 +1,7 @@
 /*
  * @Author: xiongfang
  * @Date: 2021-12-07 18:07:01
- * @LastEditTime: 2021-12-13 17:30:57
+ * @LastEditTime: 2021-12-13 17:37:57
  * @LastEditors: xiongfang
  * @Description:
  * @FilePath: \mobile-vue2-vant\vue.config.js
@@ -9,6 +9,8 @@
 
 const path = require('path')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
+const LodashModuleReplacementPlugin = require('lodash-webpack-plugin')
+
 //将传入的相对路径转换为绝对路径
 function resolve(dir) {
   return path.join(__dirname, dir) //__dirname为当前文件所在路径,dir是传递进来的相对路径
@@ -33,6 +35,8 @@ module.exports = {
     config.when(process.env.NODE_ENV !== 'development', config => {
       config.performance.set('hints', false)
       config.devtool('none')
+      // loadsh按需引入
+      config.plugin('loadshReplace').use(new LodashModuleReplacementPlugin())
       config.optimization.splitChunks({
         automaticNameDelimiter: '-',
         chunks: 'all',
@@ -60,7 +64,6 @@ module.exports = {
         }
       })
     })
-
     // 分析工具
     if (process.env.use_analyzer) {
       // 添加分析工具

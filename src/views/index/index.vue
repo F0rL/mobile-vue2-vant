@@ -13,6 +13,7 @@
 
 <script>
 import { mapState } from 'vuex'
+import { round } from 'lodash'
 export default {
   name: 'Index',
   data() {
@@ -25,6 +26,7 @@ export default {
   },
   mounted() {
     this.$store.dispatch('user/login')
+    console.log(round(4.111))
   }
 }
 </script>
