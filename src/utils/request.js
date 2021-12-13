@@ -1,7 +1,7 @@
 /*
  * @Author: xiongfang
  * @Date: 2021-12-08 11:50:54
- * @LastEditTime: 2021-12-09 15:43:23
+ * @LastEditTime: 2021-12-13 09:22:58
  * @LastEditors: xiongfang
  * @Description: axios封装
  * @FilePath: \mobile-vue2-vant\src\utils\request.js

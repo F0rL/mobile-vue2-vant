@@ -5,24 +5,26 @@
       <x-svg name="clock" />
       <van-button type="primary" @click="$router.push({ name: 'Apply' })">主要按钮</van-button>
     </div>
-    <div>
+    <div v-if="userInfo">
       <p>姓名： {{ userInfo.name }}</p>
     </div>
   </div>
 </template>
 
 <script>
+import { mapState } from 'vuex'
 export default {
   name: 'Index',
   data() {
-    return {
-      userInfo: {}
-    }
+    return {}
+  },
+  computed: {
+    ...mapState({
+      userInfo: state => state.user.userInfo
+    })
   },
   mounted() {
-    this.$store.dispatch('user/login').then(() => {
-      console.log(11)
-    })
+    this.$store.dispatch('user/login')
   }
 }
 </script>
