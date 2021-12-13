@@ -1,13 +1,14 @@
 /*
  * @Author: xiongfang
  * @Date: 2021-12-07 18:07:01
- * @LastEditTime: 2021-12-08 17:26:35
+ * @LastEditTime: 2021-12-13 17:30:57
  * @LastEditors: xiongfang
  * @Description:
  * @FilePath: \mobile-vue2-vant\vue.config.js
  */
 
 const path = require('path')
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin
 //将传入的相对路径转换为绝对路径
 function resolve(dir) {
   return path.join(__dirname, dir) //__dirname为当前文件所在路径,dir是传递进来的相对路径
@@ -27,6 +28,44 @@ module.exports = {
       .options({
         symbolId: 'icon-[name]'
       })
+
+    // 打包分割
+    config.when(process.env.NODE_ENV !== 'development', config => {
+      config.performance.set('hints', false)
+      config.devtool('none')
+      config.optimization.splitChunks({
+        automaticNameDelimiter: '-',
+        chunks: 'all',
+        cacheGroups: {
+          chunk: {
+            name: 'vab-chunk',
+            test: /[\\/]node_modules[\\/]/,
+            minSize: 131072,
+            maxSize: 524288,
+            chunks: 'async',
+            minChunks: 2,
+            priority: 10
+          },
+          vue: {
+            name: 'vue',
+            test: /[\\/]node_modules[\\/](vue(.*)|core-js)[\\/]/,
+            chunks: 'initial',
+            priority: 20
+          },
+          vant: {
+            name: 'vant',
+            test: /[\\/]node_modules[\\/]vant(.*)[\\/]/,
+            priority: 30
+          }
+        }
+      })
+    })
+
+    // 分析工具
+    if (process.env.use_analyzer) {
+      // 添加分析工具
+      config.plugin('webpack-bundle-analyzer').use(BundleAnalyzerPlugin)
+    }
   },
   pluginOptions: {
     'style-resources-loader': {
