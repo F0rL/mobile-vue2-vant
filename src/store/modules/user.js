@@ -1,7 +1,7 @@
 /*
  * @Author: xiongfang
  * @Date: 2021-12-08 16:51:37
- * @LastEditTime: 2021-12-09 15:41:33
+ * @LastEditTime: 2021-12-13 10:18:54
  * @LastEditors: xiongfang
  * @Description: 登录、获取用户信息、退出登录、清除accessToken逻辑
  * @FilePath: \mobile-vue2-vant\src\store\modules\user.js
@@ -11,7 +11,7 @@ import { getUser, setAccessToken, getAccessToken } from '@/utils/storageApi'
 import api from '@/api'
 
 const state = {
-  user: getUser(),
+  userInfo: getUser(),
   accessToken: getAccessToken()
 }
 
@@ -20,6 +20,9 @@ const getters = {
 }
 
 const mutations = {
+  setUserInfo(state, userInfo) {
+    state.userInfo = userInfo
+  },
   setAccessToken(state, accessToken) {
     state.accessToken = accessToken
     setAccessToken(accessToken)
@@ -27,10 +30,15 @@ const mutations = {
 }
 
 const actions = {
-  async login({ commit }) {
+  async getUserInfo({ commit }) {
+    const userInfo = await api.getUser()
+    commit('setUserInfo', userInfo)
+  },
+  async login({ dispatch, commit }) {
     const { token } = await api.getToken()
     if (token) {
       commit('setAccessToken', token)
+      await dispatch('getUserInfo')
     }
   }
 }
