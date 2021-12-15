@@ -1,7 +1,7 @@
 /*
  * @Author: xiongfang
  * @Date: 2021-12-01 15:49:28
- * @LastEditTime: 2021-12-08 17:46:50
+ * @LastEditTime: 2021-12-15 13:48:23
  * @LastEditors: xiongfang
  * @Description: 引入所有插件
  * @FilePath: \mobile-vue2-vant\src\plugins\index.js
@@ -19,3 +19,6 @@ import './modules/iconAutoImport'
 // 自动引入api
 import api from './modules/apiAutoImport'
 Vue.use(api)
+
+// 移动端调试工具eruda
+import './modules/erudaImport'
