@@ -1,20 +1,13 @@
 /*
  * @Author: xiongfang
  * @Date: 2021-12-15 11:37:42
- * @LastEditTime: 2021-12-15 11:43:12
+ * @LastEditTime: 2022-01-06 10:09:15
  * @LastEditors: xiongfang
  * @Description: eruda移动端调试
- * @FilePath: \Client\src\plugins\modules\erudaImport.js
+ * @FilePath: \mobile-vue2-vant\src\plugins\modules\erudaImport.js
  */
 import { mobileDebug } from '@/config'
-
+import initEruda from '@/utils/eruda'
 if (mobileDebug) {
-  !(function () {
-    var script = document.createElement('script')
-    script.src = 'https://cdn.jsdelivr.net/npm/eruda'
-    document.body.appendChild(script)
-    script.onload = function () {
-      eruda.init()
-    }
-  })()
+  initEruda()
 }
